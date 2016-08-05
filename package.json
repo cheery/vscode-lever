@@ -1,0 +1,111 @@
+{
+  "name": "vscode-lever",
+  "displayName": "Lever",
+  "description": "Official tools for Lever programming",
+  "version": "0.0.1",
+  "publisher": "cheery",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "icon": "icon.svg",
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    //"onLanguage:lever",
+    //"*"
+    "onCommand:extension.getLeverRuntimePath"
+  ],
+  "main": "./extension",
+  "contributes": {
+    "debuggers": [
+      {
+        "type": "lever",
+        "label": "Lever Debugger",
+        "enableBreakpointsFor": {
+          "languageIds": [
+            "lever"
+          ]
+        },
+        "program": "debug.js",
+        "runtime": "node",
+        "args": [],
+        "variables": {
+          "getLeverRuntimePath": "extension.getLeverRuntimePath"
+        },
+        "initialConfigurations": [
+          {
+            "name": "Lever-Run",
+            "type": "lever",
+            "request": "launch",
+            "program": "${workspaceRoot}/main.lc",
+            "lever_path": "${command.getLeverRuntimePath}",
+            "stopOnEntry": false
+          },
+          {
+            "name": "Lever-Debug",
+            "type": "lever",
+            "request": "launch",
+            "program": "${workspaceRoot}/main.lc",
+            "lever_path": "${command.getLeverRuntimePath}",
+            "stopOnEntry": true
+          }
+        ],
+        "configurationAttributes": {
+          "program": {
+            "type": "string",
+            "description": "Workspace relative path to script to run",
+            "default": "${workspaceRoot}/main.lc"
+          },
+          "stopOnEntry": {
+            "type": "boolean",
+            "description": "Automatically stop after launch.",
+            "default": true
+          },
+          "lever_path": {
+            "type": "string",
+            "description": "Path to lever's configuration file",
+            "default": "${command.getLeverRuntimePath}"
+          }
+        }
+      }
+    ],
+    "languages": [
+      {
+        "id": "lever",
+        "extensions": [
+          ".lc"
+        ],
+        "aliases": [
+          "Lever"
+        ],
+        "configuration": "language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "lever",
+        "scopeName": "source.lever",
+        "path": "./lever.tmLanguage"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Lever tools configuration",
+      "properties": {
+        "lever.runtime_path": {
+          "type": "string",
+          "default": "",
+          "description": "The folder path to the runtime this editor should use during debugging lever applications."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "devDependencies": {
+    "vscode": "^0.11.0"
+  },
+  "license": "MIT"
+}
