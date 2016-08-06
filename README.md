@@ -43,3 +43,7 @@ Humiliatingly bad release.
 ### 0.0.3
 
 The first almost proper release, for now.
+
+## Github
+
+http://github.com/cheery/vscode-lever
