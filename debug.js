@@ -95,7 +95,13 @@ function process_message(msg) {
         child.stderr.on('data', function(data){
             send("event", {event:"output", body:{category:'stderr', output:data}});
         });
+        child.on("error", function(err){
+            send("event", {event:"output", body:{category:'stderr', output:""+err}});
+        });
         child.on('close', function(status){
+            if (status != 0) {
+                log("Program closed with error: " + status);
+            }
             send("event", {event:"terminated", body:{restart:false}});
         });
         return sendResponse(msg, {});

@@ -2,7 +2,7 @@
   "name": "vscode-lever",
   "displayName": "Lever",
   "description": "Official tools for Lever programming",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "publisher": "lever",
   "engines": {
     "vscode": "^1.0.0"
