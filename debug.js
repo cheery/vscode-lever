@@ -81,10 +81,12 @@ function process_message(msg) {
     }
     else if (msg.type == "request" && msg.command == "launch") {
         var args = msg.arguments.args;
+        if (args === null || args === undefined) args = [];
+        var program = msg.arguments.program;
         var lever_path = msg.arguments.lever_path;
         var exe = get_executable_path(lever_path);
         process.env['LEVER_PATH'] = lever_path;
-        child = child_process.spawn(exe, args);
+        child = child_process.spawn(exe, [program].concat(args));
         child.stdout.setEncoding('utf8');
         child.stdout.on('data', function(data){
             send("event", {event:"output", body:{category:'stdout', output:data}});
