@@ -19,7 +19,7 @@
     "debuggers": [
       {
         "type": "lever",
-        "label": "Lever Debugger",
+        "label": "Lever Runtime",
         "enableBreakpointsFor": {
           "languageIds": [
             "lever"
