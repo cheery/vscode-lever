@@ -2,10 +2,10 @@
   "name": "vscode-lever",
   "displayName": "Lever",
   "description": "Official tools for Lever programming",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publisher": "lever",
   "engines": {
-    "vscode": "^1.0.0"
+    "vscode": "^1.17.0"
   },
   "icon": "icon.svg",
   "categories": [
@@ -37,7 +37,7 @@
             "type": "lever",
             "request": "launch",
             "program": "${workspaceRoot}/main.lc",
-            "lever_path": "${command.getLeverRuntimePath}",
+            "lever_path": "${command:getLeverRuntimePath}",
             "stopOnEntry": false
           },
           {
@@ -45,7 +45,7 @@
             "type": "lever",
             "request": "launch",
             "program": "${workspaceRoot}/main.lc",
-            "lever_path": "${command.getLeverRuntimePath}",
+            "lever_path": "${command:getLeverRuntimePath}",
             "stopOnEntry": true
           }
         ],
@@ -103,7 +103,7 @@
     "postinstall": "node ./node_modules/vscode/bin/install"
   },
   "devDependencies": {
-    "vscode": "^0.11.0"
+    "vscode": "^1.17.0"
   },
   "repository": {
     "type": "git",
